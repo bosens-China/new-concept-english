@@ -1,6 +1,4 @@
-import data from 'source/programData/lesson1/1.json';
-import mp3 from 'source/programData/lesson1/1.mp3';
-import lrc from 'source/programData/lesson1/1.lrc';
+import volume1 from '@boses/source/1';
 import { Title } from './Title';
 import { Describe } from './Describe';
 import { Text } from './Text';

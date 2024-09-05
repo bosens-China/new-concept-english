@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.1",
+    "@boses/source": "^1.6.0",
     "antd": "^5.20.3",
     "lodash-es": "^4.17.21",
     "next": "14.2.7",
     "react": "^18",
-    "react-dom": "^18",
-    "source": "workspace:*"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@ant-design/icons": "^5.4.0",
@@ -23,11 +23,9 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "file-loader": "^6.2.0",
     "postcss": "^8",
-    "raw-loader": "^4.0.2",
     "sass": "^1.77.8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "unocss": "^0.62.3"
   }
 }

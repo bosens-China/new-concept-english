@@ -1,4 +1,7 @@
 {
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "files.participants.timeout": 0,
+  "markdown.updateLinksOnFileMove.enableForDirectories": true
   // "eslint.workingDirectories": [
   //   { "pattern": "apps/*/" },
   //   { "pattern": "packages/*/" }
