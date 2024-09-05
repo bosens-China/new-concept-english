@@ -4,10 +4,8 @@ import { Header, Content, Footer } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
 import type { MenuProps } from 'antd';
 import { Params } from '../types';
-import volume1 from '@boses/source/1';
-import volume2 from '@boses/source/2';
-import volume3 from '@boses/source/3';
-import volume4 from '@boses/source/4';
+import { volume1, volume2, volume3, volume4 } from '@boses/source';
+import Link from 'next/link';
 
 export default function VolumeLayout({
   children,
@@ -37,63 +35,66 @@ export default function VolumeLayout({
     background: '#fff',
   };
 
-  const items: Array<{ key: Params['volume']; label: string }> = [
+  const items: Array<{ key: Params['volume']; label: React.ReactNode }> = [
     {
       key: '1',
-      label: `第一册`,
+      label: <Link href={`/1/1`}>第一册</Link>,
     },
     {
       key: '2',
-      label: `第二册`,
+      label: <Link href={`/2/1`}>第二册</Link>,
     },
     {
       key: `3`,
-      label: `第三册`,
+      label: <Link href={`/3/1`}>第三册</Link>,
     },
     {
       key: `4`,
-      label: `第四册`,
+      label: <Link href={`/4/1`}>第四册</Link>,
     },
   ];
 
   type MenuItem = Required<MenuProps>['items'][number];
 
   const menuItems: MenuItem[] = useMemo(() => {
+    const getHref = (path: string) => {
+      return [`/${params.volume}`, path].join(`/`);
+    };
+
     switch (params.volume) {
       case '1':
-        return Object.entries(volume1).map(([key]): MenuItem => {
+        return Object.entries(volume1).map(([key, value]): MenuItem => {
+          const v = value as (typeof volume1)['1'];
           return {
             key,
-            label: key,
+            label: (
+              <Link href={getHref(key)}>{v?.additional?.title || key}</Link>
+            ),
           };
         });
       case '2':
         return Object.entries(volume2).map(([key]): MenuItem => {
           return {
             key,
-            label: key,
+            label: <Link href={getHref(key)}>{key}</Link>,
           };
         });
       case '3':
         return Object.entries(volume3).map(([key]): MenuItem => {
           return {
             key,
-            label: key,
+            label: <Link href={getHref(key)}>{key}</Link>,
           };
         });
       case '4':
         return Object.entries(volume4).map(([key]): MenuItem => {
           return {
             key,
-            label: key,
+            label: <Link href={getHref(key)}>{key}</Link>,
           };
         });
     }
   }, [params]);
-
-  const sortMenuItems = useMemo(() => {
-    return menuItems;
-  }, [menuItems]);
 
   return (
     <>
@@ -103,7 +104,7 @@ export default function VolumeLayout({
           <Menu
             theme="light"
             mode="horizontal"
-            defaultSelectedKeys={[items.at(0)?.key as string]}
+            selectedKeys={[params.volume]}
             items={items}
           />
         </Header>
@@ -111,9 +112,9 @@ export default function VolumeLayout({
         <Layout className="mt-64px" hasSider>
           <Sider width={256} style={siderStyle} className="">
             <Menu
-              defaultSelectedKeys={[sortMenuItems.at(0)?.key as string]}
+              defaultSelectedKeys={[menuItems.at(0)?.key as string]}
               mode="inline"
-              items={sortMenuItems}
+              items={menuItems}
             />
           </Sider>
           <Content style={contentStyle} className="ml-256px">

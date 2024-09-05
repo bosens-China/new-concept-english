@@ -1,8 +1,6 @@
 import React from 'react';
-import Lesson1 from '@boses/source/1';
-import Lesson2 from '@boses/source/2';
-import Lesson3 from '@boses/source/3';
-import Lesson4 from '@boses/source/4';
+import { volume1, volume2, volume3, volume4 } from '@boses/source';
+
 import { Volume } from '@/app/types';
 
 interface Params {
@@ -18,23 +16,23 @@ interface Props {
 export async function generateStaticParams() {
   const arr: {
     volume: Volume;
-    Lesson: typeof Lesson1 | typeof Lesson2 | typeof Lesson3 | typeof Lesson4;
+    Lesson: typeof volume1 | typeof volume2 | typeof volume3 | typeof volume4;
   }[] = [
     {
       volume: '1',
-      Lesson: Lesson1,
+      Lesson: volume1,
     },
     {
       volume: '2',
-      Lesson: Lesson2,
+      Lesson: volume2,
     },
     {
       volume: '3',
-      Lesson: Lesson3,
+      Lesson: volume3,
     },
     {
       volume: '4',
-      Lesson: Lesson4,
+      Lesson: volume4,
     },
   ];
   return arr
@@ -42,7 +40,7 @@ export async function generateStaticParams() {
       return Object.entries(item.Lesson).map(([key]): Params => {
         return {
           volume: item.volume,
-          id: `${Number.parseFloat(key)}`,
+          id: key,
         };
       });
     })
