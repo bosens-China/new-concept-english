@@ -38,3 +38,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+// 禁止使用非静态导出的功能
+export const dynamic = 'error';

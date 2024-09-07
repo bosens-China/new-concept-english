@@ -39,8 +39,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1(@ant-design/cssinjs@1.21.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(antd@5.20.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.7(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@boses/source':
-        specifier: ^1.7.0
-        version: 1.7.0
+        specifier: ^1.8.1
+        version: 1.8.1
       antd:
         specifier: ^5.20.3
         version: 5.20.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -277,9 +277,9 @@ packages:
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
 
-  '@boses/source@1.7.0':
-    resolution: {integrity: sha512-37q8A5qCDLdhEV3HZm78dzRGNH03cM7+LA9GstzaRGmiVefT9nqoYQOI0I4lAOd/OlFuxLncLRcRfum1ha9bcg==}
-    engines: {node: '>=20.13.1'}
+  '@boses/source@1.8.1':
+    resolution: {integrity: sha512-hAxfa0v7lyZUGTYYlcf3Vxq0VXq/pShrVmF97rmH/HgwP0KWEYA0H+bjidWw1oRrhmHqQUAHkUz9ZUVYXgZyew==}
+    engines: {node: '>=20.0.0'}
 
   '@ctrl/tinycolor@3.6.1':
     resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==}
@@ -1514,6 +1514,7 @@ packages:
   follow-redirects@1.15.8:
     resolution: {integrity: sha512-xgrmBhBToVKay1q2Tao5LI26B83UhrB/vM1avwVSDzt8rx3rO6AizBAaF46EgksTVr+rFTQaqZZ9MVBfUe4nig==}
     engines: {node: '>=4.0'}
+    deprecated: Browser detection issues fixed in v1.15.9
     peerDependencies:
       debug: '*'
     peerDependenciesMeta:
@@ -3209,7 +3210,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@boses/source@1.7.0':
+  '@boses/source@1.8.1':
     dependencies:
       axios: 1.7.7
       formdata-node: 6.0.3

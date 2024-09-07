@@ -117,8 +117,8 @@ export default function VolumeLayout({
               items={menuItems}
             />
           </Sider>
-          <Content style={contentStyle} className="ml-256px">
-            <div className="p-24px">{children}</div>
+          <Content style={contentStyle} className="ml-256px flex flex-col">
+            <div className="p-24px flex-1">{children}</div>
             <Footer style={footerStyle} className="">
               Footer
             </Footer>
