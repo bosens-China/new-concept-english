@@ -76,36 +76,40 @@ export default async function Page(props: Props) {
         {/*
          * 如果存在插图的话，也要同步展示
          */}
-        <section className="mt-24px">
-          {text.text_and_translation.map((item, index) => {
-            const interfaceUrl = lesson.illustration?.[index].interface.realUrl;
-            return (
-              <p
-                key={item.text + index}
-                className={classNames({
-                  flex: !!interfaceUrl,
-                  'm-0': !!interfaceUrl,
-                })}
-              >
-                <span
+
+        {Array.isArray(text.text_and_translation) && (
+          <section className="mt-24px">
+            {text.text_and_translation.map((item, index) => {
+              const interfaceUrl =
+                lesson.illustration?.[index]?.interface?.realUrl;
+              return (
+                <p
+                  key={item.text + index}
                   className={classNames({
-                    'flex-1': !!interfaceUrl,
+                    flex: !!interfaceUrl,
+                    'm-0': !!interfaceUrl,
                   })}
                 >
-                  {item.text}
-                </span>
-                {!!interfaceUrl && (
-                  <Image
-                    width={240}
-                    height={140}
-                    src={interfaceUrl}
-                    alt={`课程配图${index + 1}`}
-                  ></Image>
-                )}
-              </p>
-            );
-          })}
-        </section>
+                  <span
+                    className={classNames({
+                      'flex-1': !!interfaceUrl,
+                    })}
+                  >
+                    {item.text}
+                  </span>
+                  {!!interfaceUrl && (
+                    <Image
+                      width={240}
+                      height={140}
+                      src={interfaceUrl}
+                      alt={`课程配图${index + 1}`}
+                    ></Image>
+                  )}
+                </p>
+              );
+            })}
+          </section>
+        )}
 
         <section>
           <h2 className="text-size-18px">

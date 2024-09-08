@@ -1,8 +1,6 @@
 // import { ArchiverWebpackPlugin } from '@tanem/archiver-webpack-plugin';
 
-const { GITHUB_ACTION_REPOSITORY, GITHUB_REPOSITORY, CI } = process.env;
-
-console.log({ env: process.env });
+const { GITHUB_REPOSITORY } = process.env;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -11,7 +9,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  basePath: CI ? '/learning-platform' : undefined,
+  basePath: GITHUB_REPOSITORY
+    ? `/${GITHUB_REPOSITORY.split('/').at(1)}`
+    : undefined,
   images: {
     unoptimized: true,
   },
