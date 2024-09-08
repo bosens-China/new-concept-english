@@ -39,8 +39,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1(@ant-design/cssinjs@1.21.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(antd@5.20.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.7(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@boses/source':
-        specifier: ^1.8.1
-        version: 1.8.1
+        specifier: ^1.8.2
+        version: 1.8.2
       antd:
         specifier: ^5.20.3
         version: 5.20.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -277,8 +277,8 @@ packages:
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
 
-  '@boses/source@1.8.1':
-    resolution: {integrity: sha512-hAxfa0v7lyZUGTYYlcf3Vxq0VXq/pShrVmF97rmH/HgwP0KWEYA0H+bjidWw1oRrhmHqQUAHkUz9ZUVYXgZyew==}
+  '@boses/source@1.8.2':
+    resolution: {integrity: sha512-eB35cD/1+2BlrcZO/0A+YckfMnGJkMuifP0aifUODm4d0N6QPnV/wRNBvMh05blfXEBy6FzZK+s3yloHDBhuMw==}
     engines: {node: '>=20.0.0'}
 
   '@ctrl/tinycolor@3.6.1':
@@ -3210,7 +3210,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@boses/source@1.8.1':
+  '@boses/source@1.8.2':
     dependencies:
       axios: 1.7.7
       formdata-node: 6.0.3
