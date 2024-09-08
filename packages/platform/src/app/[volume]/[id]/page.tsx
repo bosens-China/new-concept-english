@@ -1,6 +1,7 @@
 import React from 'react';
 import { Volume, Volumes } from '@/app/types';
-import { Text } from '@boses/source';
+import Image from 'next/image';
+import classNames from 'classnames';
 
 interface Params {
   volume: Volume;
@@ -34,11 +35,23 @@ export default async function Page(props: Props) {
     const data = Volumes['1'];
     const lesson = data[id];
 
-    if (!lesson.text || !lesson.text.interface) {
+    if (!lesson.text) {
       return <p>当前课程的内容正在开发等待上传...</p>;
     }
 
-    const text: Text = await (await fetch(lesson.text.interface.url)).json();
+    const text = lesson.text;
+
+    const textAndTranslation = text.vocabulary.reduce(
+      (acc, _, i, array) => {
+        if (i % 2 === 0) {
+          acc.push(array.slice(i, i + 2));
+        }
+        return acc;
+      },
+      [] as unknown as
+        | [typeof text.vocabulary, typeof text.vocabulary]
+        | [typeof text.vocabulary],
+    );
 
     return (
       <article>
@@ -47,13 +60,50 @@ export default async function Page(props: Props) {
           <p>
             {text.introduction[0]}
             <br></br>
-            {text.introduction[1]}
+            <span className="mt-0.5em block">{text.introduction[1]}</span>
           </p>
+          <p></p>
         </header>
+        <audio controls>
+          <source
+            src={lesson.tapeEnglish.mp3.interface.url}
+            type="audio/mpeg"
+          />
 
+          <p>当前浏览器不支持播放mp3</p>
+        </audio>
+
+        {/*
+         * 如果存在插图的话，也要同步展示
+         */}
         <section className="mt-24px">
           {text.text_and_translation.map((item, index) => {
-            return <p key={item.text + index}>{item.text}</p>;
+            const interfaceUrl = lesson.illustration?.[index].interface.realUrl;
+            return (
+              <p
+                key={item.text + index}
+                className={classNames({
+                  flex: !!interfaceUrl,
+                  'm-0': !!interfaceUrl,
+                })}
+              >
+                <span
+                  className={classNames({
+                    'flex-1': !!interfaceUrl,
+                  })}
+                >
+                  {item.text}
+                </span>
+                {!!interfaceUrl && (
+                  <Image
+                    width={240}
+                    height={140}
+                    src={interfaceUrl}
+                    alt={`课程配图${index + 1}`}
+                  ></Image>
+                )}
+              </p>
+            );
           })}
         </section>
 
@@ -61,18 +111,30 @@ export default async function Page(props: Props) {
           <h2 className="text-size-18px">
             New words and expressions 生词和短语
           </h2>
-          <ul className="flex flex-wrap pl-0 list-none">
-            {text.vocabulary.map((item) => {
+          <ul className="pl-0 list-none">
+            {/*
+             * 为了结构，必须改为两个为一组输出
+             */}
+
+            {textAndTranslation.map(([item1, item2]) => {
               return (
-                <li key={item.word} className="min-w-50%">
-                  <p>
-                    <span className="mr-6px">{item.word}</span>
-                    <span className="mr-6px">{item.pronunciation}</span>
-                    <span>
-                      {item.type}
-                      {item.definition}
-                    </span>
-                  </p>
+                <li key={item1.word} className="flex flex-wrap m-y-1em">
+                  {[item1, item2]
+                    .filter((f): f is typeof item1 => {
+                      return f != null;
+                    })
+                    .map((item) => {
+                      return (
+                        <p className="min-w-50% m-0" key={item.word}>
+                          <span className="mr-6px">{item.word}</span>
+                          <span className="mr-6px">{item.pronunciation}</span>
+                          <span>
+                            {item.type}
+                            {item.definition}
+                          </span>
+                        </p>
+                      );
+                    })}
                 </li>
               );
             })}
@@ -88,7 +150,7 @@ export default async function Page(props: Props) {
                   <p>
                     <span> {item.title}</span>
                     <br />
-                    <span> {item.describe}</span>
+                    <span className="block mt-0.5em"> {item.describe}</span>
                   </p>
                 </li>
               );

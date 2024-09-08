@@ -12,7 +12,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   basePath: CI ? '/learning-platform' : undefined,
-
+  images: {
+    unoptimized: true,
+  },
   webpack: (config, { dev }) => {
     if (dev) {
       return config;
