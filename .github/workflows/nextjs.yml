@@ -80,6 +80,8 @@ jobs:
       # 有可能lock文件发生变化，所以需要这一步
       - name: Commit and push changes
         uses: crazy-max/ghaction-github-pages@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           target_branch: master
           build_dir: .
