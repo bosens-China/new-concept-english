@@ -33,7 +33,6 @@ export default async function Page(props: Props) {
   if (volume === '1') {
     const data = Volumes['1'];
     const lesson = data[id];
-    console.log(lesson.text);
 
     if (!lesson.text || !lesson.text.interface) {
       return <p>当前课程的内容正在开发等待上传...</p>;

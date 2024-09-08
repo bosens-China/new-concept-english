@@ -2,7 +2,7 @@
 
 const { GITHUB_ACTION_REPOSITORY, GITHUB_REPOSITORY, CI } = process.env;
 
-console.log(GITHUB_ACTION_REPOSITORY, GITHUB_REPOSITORY);
+console.log({ env: process.env });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
