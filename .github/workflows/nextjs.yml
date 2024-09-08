@@ -77,6 +77,14 @@ jobs:
         with:
           path: ./packages/platform/out
 
+      # 有可能lock文件发生变化，所以需要这一步
+      - name: Commit and push changes
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: master
+          build_dir: .
+          commit_message: 'build: Dependency relationship update'
+
   deploy:
     environment:
       name: github-pages
